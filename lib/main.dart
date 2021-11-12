@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -88,22 +88,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Map> tiktokItems = [
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_1.mp4",
     },
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_2.mp4",
     },
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_3.mp4",
     },
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_4.mp4",
     },
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_5.mp4",
     },
     {
-      "video": "assets/videos/video_1",
+      "video": "assets/videos/video_6.mp4",
     },
   ];
 
@@ -119,9 +119,9 @@ class _HomePageState extends State<HomePage> {
         return Builder(
           builder: (BuildContext context) {
             return Container(
-              color: const Color(0xFF141518),
+              color: Color(0xFF141518),
               child: Stack(
-                children: [VideoWidget(videoUrl: item['video'])],
+                children: [VideoWidget()],
               ),
             );
           },
@@ -132,23 +132,22 @@ class _HomePageState extends State<HomePage> {
 }
 
 class VideoWidget extends StatefulWidget {
-  const VideoWidget({Key? key, required this.videoUrl}) : super(key: key);
-  final String videoUrl;
+  // final String videoUrl;
+  // const VideoWidget({required this.videoUrl});
+
   @override
-  _VideoWidgetState createState() => _VideoWidgetState(this.videoUrl);
+  _VideoWidgetState createState() => _VideoWidgetState();
 }
 
 class _VideoWidgetState extends State<VideoWidget> {
-  final String videoUrl;
   late VideoPlayerController _controller;
-
-  _VideoWidgetState(this.videoUrl);
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.asset(videoUrl)
+    _controller = VideoPlayerController.asset('assets/videos/video_2.mp4')
       ..initialize().then((_) {
+        // _controller.play();
         setState(() {});
       });
   }
